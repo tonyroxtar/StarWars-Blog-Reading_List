@@ -10,13 +10,12 @@ const Ships = () => {
   }, [actions]);
 
   useEffect(() => {
-    const fetchDetails = async () => {
-      for (const ship of store.ships) {
-        await actions.FetchShipDetails(ship.uid);
-      }
-    };
     if (store.ships.length > 0) {
-      fetchDetails();
+      store.ships.forEach(ship => {
+        if (!store.shipDetails[ship.uid]) {
+          actions.FetchShipDetails(ship.uid);
+        }
+      });
     }
   }, [store.ships, actions]);
 
@@ -31,7 +30,7 @@ const Ships = () => {
             <Card
               title={ship.name}
               description={`Model: ${store.shipDetails[ship.uid]?.model || 'N/A'}, Manufacturer: ${store.shipDetails[ship.uid]?.manufacturer || 'N/A'}`}
-              imageUrl={`https://starwars-visualguide.com/assets/img/starships/${ship.uid}.jpg`}
+              imageUrl={`https://starwars-visualguide.com/assets/img/starships/${ship.uid}.jpg`} // URL específica de la imagen
             />
           </div>
         ))}

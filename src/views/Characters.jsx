@@ -10,13 +10,12 @@ const Characters = () => {
   }, [actions]);
 
   useEffect(() => {
-    const fetchDetails = async () => {
-      for (const character of store.characters) {
-        await actions.FetchCharacterDetails(character.uid);
-      }
-    };
     if (store.characters.length > 0) {
-      fetchDetails();
+      store.characters.forEach(character => {
+        if (!store.characterDetails[character.uid]) {
+          actions.FetchCharacterDetails(character.uid);
+        }
+      });
     }
   }, [store.characters, actions]);
 
@@ -31,7 +30,7 @@ const Characters = () => {
             <Card
               title={character.name}
               description={`Gender: ${store.characterDetails[character.uid]?.gender || 'N/A'}, Birth Year: ${store.characterDetails[character.uid]?.birth_year || 'N/A'}`}
-              imageUrl={`https://starwars-visualguide.com/assets/img/characters/${character.uid}.jpg`}
+              imageUrl={`https://starwars-visualguide.com/assets/img/characters/${character.uid}.jpg`} // URL específica de la imagen
             />
           </div>
         ))}

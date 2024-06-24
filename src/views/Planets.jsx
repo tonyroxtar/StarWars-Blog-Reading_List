@@ -10,13 +10,12 @@ const Planets = () => {
   }, [actions]);
 
   useEffect(() => {
-    const fetchDetails = async () => {
-      for (const planet of store.planets) {
-        await actions.FetchPlanetDetails(planet.uid);
-      }
-    };
     if (store.planets.length > 0) {
-      fetchDetails();
+      store.planets.forEach(planet => {
+        if (!store.planetDetails[planet.uid]) {
+          actions.FetchPlanetDetails(planet.uid);
+        }
+      });
     }
   }, [store.planets, actions]);
 
@@ -31,7 +30,7 @@ const Planets = () => {
             <Card
               title={planet.name}
               description={`Population: ${store.planetDetails[planet.uid]?.population || 'N/A'}, Terrain: ${store.planetDetails[planet.uid]?.terrain || 'N/A'}`}
-              imageUrl={`https://starwars-visualguide.com/assets/img/planets/${planet.uid}.jpg`}
+              imageUrl={`https://starwars-visualguide.com/assets/img/planets/${planet.uid}.jpg`} // URL específica de la imagen
             />
           </div>
         ))}
