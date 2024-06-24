@@ -1,10 +1,10 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
+import React from 'react';
+import { createRoot } from 'react-dom/client'; // Importa createRoot en lugar de ReactDOM.render
+import App from './App';
+import injectContext from './store/appContext';
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
+const AppWithContext = injectContext(App);
+
+const container = document.getElementById('root');
+const root = createRoot(container); // Crear una raíz de renderizado
+root.render(<AppWithContext />); // Renderiza el componente
