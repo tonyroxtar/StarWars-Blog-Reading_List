@@ -46,7 +46,8 @@ const getState = ({ getStore, getActions, setStore }) => {
             ships: getFromLocalStorage('ships') || [],
             characterDetails: {},
             planetDetails: {},
-            shipDetails: {}
+            shipDetails: {},
+            favorites: getFromLocalStorage('favorites') || [] // Inicialización de favoritos
         },
         actions: {
             FetchCharacters: async () => {
@@ -161,6 +162,20 @@ const getState = ({ getStore, getActions, setStore }) => {
                         console.log('Error fetching ship details:', error);
                     }
                 }
+            },
+
+            addToFavorites: (item) => {
+                const store = getStore();
+                const newFavorites = [...store.favorites, item];
+                setStore({ favorites: newFavorites });
+                saveToLocalStorage('favorites', newFavorites);
+            },
+
+            removeFromFavorites: (item) => {
+                const store = getStore();
+                const newFavorites = store.favorites.filter(fav => fav.uid !== item.uid);
+                setStore({ favorites: newFavorites });
+                saveToLocalStorage('favorites', newFavorites);
             }
         }
     };

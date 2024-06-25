@@ -1,36 +1,33 @@
-import React, { createContext, useReducer, useContext } from "react";
-import getState from "./flux";
+import React, { createContext, useState, useEffect } from 'react';
+import getState from './flux.jsx';
 
 export const Context = createContext(null);
 
 const injectContext = PassedComponent => {
-    const StoreWrapper = props => {
-        const initialState = getState({
-            getStore: () => state.store,
-            getActions: () => state.actions,
-            setStore: updatedStore => setState({
-                store: Object.assign(state.store, updatedStore),
-                actions: { ...state.actions }
-            })
-        });
+  const StoreWrapper = (props) => {
+    const [state, setState] = useState(
+      getState({
+        getStore: () => state.store,
+        getActions: () => state.actions,
+        setStore: updatedStore => setState({
+          store: Object.assign(state.store, updatedStore),
+          actions: { ...state.actions }
+        })
+      })
+    );
 
-        const [state, setState] = useReducer(
-            (prevState, newState) => ({ ...prevState, ...newState }),
-            initialState
-        );
+    useEffect(() => {
+      // Puedes inicializar datos o realizar efectos secundarios aquí si es necesario
+    }, []);
 
-        const { store, actions } = state;
+    return (
+      <Context.Provider value={state}>
+        <PassedComponent {...props} />
+      </Context.Provider>
+    );
+  };
 
-        return (
-            <Context.Provider value={{ store, actions }}>
-                <PassedComponent {...props} />
-            </Context.Provider>
-        );
-    };
-
-    return StoreWrapper;
+  return StoreWrapper;
 };
-
-export const useAppContext = () => useContext(Context);
 
 export default injectContext;

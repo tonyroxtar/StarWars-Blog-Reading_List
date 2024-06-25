@@ -1,6 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookJournalWhills } from "@fortawesome/free-solid-svg-icons";
+import Favorites from "./Favorites"; // Importa el componente de Favoritos
 
 const Navbar = () => {
   return (
@@ -30,22 +31,7 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
-              <div className="dropdown">
-                <button
-                  className="btn btn-secondary dropdown-toggle"
-                  type="button"
-                  id="dropdownMenuButton"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Favorites
-                </button>
-                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <li><a className="dropdown-item" href="#">Action</a></li>
-                  <li><a className="dropdown-item" href="#">Another action</a></li>
-                  <li><a className="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-              </div>
+              <Favorites />
             </li>
           </ul>
         </div>

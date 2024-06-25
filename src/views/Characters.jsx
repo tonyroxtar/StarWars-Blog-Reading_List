@@ -19,21 +19,27 @@ const Characters = () => {
     }
   }, [store.characters, actions]);
 
-  console.log('Store Characters:', store.characters);
+  console.log("Store Characters:", store.characters);
 
   return (
     <div className="container-fluid mt-5">
       <h1 className="pt-3">The Characters</h1>
       <div className="row">
-        {store.characters && store.characters.map((character, index) => (
-          <div className="col-md-4" key={index}>
-            <Card
-              title={character.name}
-              description={`Gender: ${store.characterDetails[character.uid]?.gender || 'N/A'}, Birth Year: ${store.characterDetails[character.uid]?.birth_year || 'N/A'}`}
-              imageUrl={`https://starwars-visualguide.com/assets/img/characters/${character.uid}.jpg`} // URL específica de la imagen
-            />
-          </div>
-        ))}
+        {store.characters &&
+          store.characters.map((character, index) => (
+            <div className="col-md-4" key={index}>
+              <Card
+                title={character.name}
+                description={`Gender: ${
+                  store.characterDetails[character.uid]?.gender || "N/A"
+                }, Birth Year: ${
+                  store.characterDetails[character.uid]?.birth_year || "N/A"
+                }`}
+                imageUrl={`https://starwars-visualguide.com/assets/img/characters/${character.uid}.jpg`}
+                item={character}
+              />
+            </div>
+          ))}
       </div>
     </div>
   );

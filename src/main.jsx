@@ -1,10 +1,10 @@
-import React from 'react';
-import { createRoot } from 'react-dom/client'; // Importa createRoot en lugar de ReactDOM.render
-import App from './App';
-import injectContext from './store/appContext';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import App from "./App";
+import injectContext from "./store/appContext"; // Asegúrate de que esta ruta es correcta
 
 const AppWithContext = injectContext(App);
 
-const container = document.getElementById('root');
-const root = createRoot(container); // Crear una raíz de renderizado
-root.render(<AppWithContext />); // Renderiza el componente
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<AppWithContext />);
