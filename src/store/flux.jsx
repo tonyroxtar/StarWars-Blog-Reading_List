@@ -170,9 +170,10 @@ const getState = ({ getStore, getActions, setStore }) => {
                 }
             },
 
-            addToFavorites: (item) => {
+            addToFavorites: (item, type) => {
                 const store = getStore();
-                const newFavorites = [...store.favorites, item];
+                const newItem = { ...item, type }; // Asegúrate de agregar 'type' al item
+                const newFavorites = [...store.favorites, newItem];
                 setStore({ favorites: newFavorites });
                 saveToLocalStorage('favorites', newFavorites);
             },

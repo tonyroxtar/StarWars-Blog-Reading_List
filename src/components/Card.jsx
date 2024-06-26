@@ -39,7 +39,7 @@ const Card = ({ title, description, imageUrl, item, type }) => {
           <button
             className="btn btn-secondary"
             aria-label="Add to favorites"
-            onClick={() => actions.addToFavorites(item)}
+            onClick={() => actions.addToFavorites(item, type)}
           >
             <FontAwesomeIcon icon={faGalacticRepublic} />
           </button>

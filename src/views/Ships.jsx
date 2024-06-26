@@ -23,7 +23,7 @@ const Ships = () => {
 
   return (
     <div className="container-fluid mt-5">
-      <h1 className="pt-3">The Ships</h1>
+      <h2 className="pt-3">The Ships</h2>
       <div className="row">
         {store.ships &&
           store.ships.map((ship, index) => (

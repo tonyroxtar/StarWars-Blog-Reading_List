@@ -1,0 +1,58 @@
+/* Variables de tema oscuro */
+:root {
+    --bs-body-bg: #121212;
+    --bs-body-color: #f8f9fa;
+    --bs-navbar-bg: #1c1c1c;
+    --bs-navbar-color: #f8f9fa;
+    --bs-card-bg: #1e1e1e;
+    --bs-card-color: #f8f9fa;
+    --bs-btn-bg: #333;
+    --bs-btn-color: #f8f9fa;
+    --bs-link-color: #0d6efd;
+    --bs-link-hover-color: #0a58ca;
+  }
+  
+  /* Estilos personalizados adicionales */
+  body {
+    background-color: var(--bs-body-bg);
+    color: var(--bs-body-color);
+  }
+  
+  .navbar {
+    background-color: var(--bs-navbar-bg);
+    color: var(--bs-navbar-color);
+  }
+  
+  .navbar-brand,
+  .navbar-nav .nav-link {
+    color: var(--bs-navbar-color);
+  }
+  
+  .card {
+    background-color: var(--bs-card-bg);
+    color: var(--bs-card-color);
+  }
+  
+  .btn-secondary {
+    background-color: var(--bs-btn-bg);
+    color: var(--bs-btn-color);
+    border: none;
+  }
+  
+  .btn-secondary:hover {
+    background-color: #444;
+  }
+  
+  a {
+    color: var(--bs-link-color);
+  }
+  
+  a:hover {
+    color: var(--bs-link-hover-color);
+  }
+  
+  .img-fluid {
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  }
+  

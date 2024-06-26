@@ -23,7 +23,7 @@ const Characters = () => {
 
   return (
     <div className="container-fluid mt-5">
-      <h1 className="pt-3">The Characters</h1>
+      <h2 className="pt-3">The Characters</h2>
       <div className="row">
         {store.characters &&
           store.characters.map((character, index) => (
