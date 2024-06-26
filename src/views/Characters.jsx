@@ -37,6 +37,7 @@ const Characters = () => {
                 }`}
                 imageUrl={`https://starwars-visualguide.com/assets/img/characters/${character.uid}.jpg`}
                 item={character}
+                type="characters"
               />
             </div>
           ))}

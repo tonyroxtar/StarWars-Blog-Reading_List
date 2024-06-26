@@ -53,8 +53,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             FetchCharacters: async () => {
                 if (getStore().characters.length === 0) {
                     try {
-                        const response = await fetchWithRetry(`${API_BASE_URL}/people`);
-                        const data = await response;
+                        const data = await fetchWithRetry(`${API_BASE_URL}/people`);
                         setStore({ characters: data.results });
                         saveToLocalStorage('characters', data.results);
                     } catch (error) {
@@ -72,16 +71,19 @@ const getState = ({ getStore, getActions, setStore }) => {
                             [uid]: cachedDetails
                         }
                     });
+                    return cachedDetails;
                 } else if (!getStore().characterDetails[uid]) {
                     try {
                         const data = await fetchWithRetry(`${API_BASE_URL}/people/${uid}`);
+                        const details = data.result.properties;
                         setStore({
                             characterDetails: {
                                 ...getStore().characterDetails,
-                                [uid]: data.result.properties
+                                [uid]: details
                             }
                         });
-                        cacheDetails('character', uid, data.result.properties);
+                        cacheDetails('character', uid, details);
+                        return details;
                     } catch (error) {
                         console.log('Error fetching character details:', error);
                     }
@@ -91,8 +93,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             FetchPlanets: async () => {
                 if (getStore().planets.length === 0) {
                     try {
-                        const response = await fetchWithRetry(`${API_BASE_URL}/planets`);
-                        const data = await response;
+                        const data = await fetchWithRetry(`${API_BASE_URL}/planets`);
                         setStore({ planets: data.results });
                         saveToLocalStorage('planets', data.results);
                     } catch (error) {
@@ -110,16 +111,19 @@ const getState = ({ getStore, getActions, setStore }) => {
                             [uid]: cachedDetails
                         }
                     });
+                    return cachedDetails;
                 } else if (!getStore().planetDetails[uid]) {
                     try {
                         const data = await fetchWithRetry(`${API_BASE_URL}/planets/${uid}`);
+                        const details = data.result.properties;
                         setStore({
                             planetDetails: {
                                 ...getStore().planetDetails,
-                                [uid]: data.result.properties
+                                [uid]: details
                             }
                         });
-                        cacheDetails('planet', uid, data.result.properties);
+                        cacheDetails('planet', uid, details);
+                        return details;
                     } catch (error) {
                         console.log('Error fetching planet details:', error);
                     }
@@ -129,8 +133,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             FetchShips: async () => {
                 if (getStore().ships.length === 0) {
                     try {
-                        const response = await fetchWithRetry(`${API_BASE_URL}/starships`);
-                        const data = await response;
+                        const data = await fetchWithRetry(`${API_BASE_URL}/starships`);
                         setStore({ ships: data.results });
                         saveToLocalStorage('ships', data.results);
                     } catch (error) {
@@ -148,16 +151,19 @@ const getState = ({ getStore, getActions, setStore }) => {
                             [uid]: cachedDetails
                         }
                     });
+                    return cachedDetails;
                 } else if (!getStore().shipDetails[uid]) {
                     try {
                         const data = await fetchWithRetry(`${API_BASE_URL}/starships/${uid}`);
+                        const details = data.result.properties;
                         setStore({
                             shipDetails: {
                                 ...getStore().shipDetails,
-                                [uid]: data.result.properties
+                                [uid]: details
                             }
                         });
-                        cacheDetails('ship', uid, data.result.properties);
+                        cacheDetails('ship', uid, details);
+                        return details;
                     } catch (error) {
                         console.log('Error fetching ship details:', error);
                     }

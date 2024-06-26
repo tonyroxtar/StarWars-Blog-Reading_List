@@ -37,6 +37,7 @@ const Planets = () => {
                 }`}
                 imageUrl={`https://starwars-visualguide.com/assets/img/planets/${planet.uid}.jpg`}
                 item={planet}
+                type="planets"
               />
             </div>
           ))}

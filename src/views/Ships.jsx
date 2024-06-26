@@ -37,6 +37,7 @@ const Ships = () => {
                 }`}
                 imageUrl={`https://starwars-visualguide.com/assets/img/starships/${ship.uid}.jpg`}
                 item={ship}
+                type="ships"
               />
             </div>
           ))}
